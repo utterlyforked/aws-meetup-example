@@ -1,8 +1,8 @@
 #!/bin/bash
 
 INSTANCE_ID=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
-QUEUE=`aws --region=eu-west-1 ec2 describe-tags --filters "Name=resource-id,Values=i-4550f805" "Name=key,Values=sourcequeue" | jq -r '.Tags[].Value'`
-BUCKET=`aws --region=eu-west-1 ec2 describe-tags --filters "Name=resource-id,Values=i-4550f805" "Name=key,Values=targetbucket" | jq -r '.Tags[].Value'`
+QUEUE=`aws --region=eu-west-1 ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=sourcequeue" | jq -r '.Tags[].Value'`
+BUCKET=`aws --region=eu-west-1 ec2 describe-tags --filters "Name=resource-id,Values=$INSTANCE_ID" "Name=key,Values=targetbucket" | jq -r '.Tags[].Value'`
 
 while true
 do
