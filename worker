@@ -8,7 +8,7 @@ while true
 do
 MESSAGE=`aws --region=eu-west-1 sqs receive-message --queue-url=$QUEUE | jq -r '.Messages[].Body'`
 MD5=`echo $MESSAGE | md5sum | awk '{print $1}'`
-COW=`echo $MESSAGE | cowsay`
+COW=`echo $MESSAGE | cowsay -f elephant`
 
 cat << EOF > $MD5.html
 <html>
